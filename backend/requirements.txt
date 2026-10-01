@@ -1,0 +1,11 @@
+# Real Estate Predictor — Backend Python Dependencies
+# All packages have pre-built cp314-win_amd64 wheels — no C compilation needed.
+fastapi==0.115.12
+uvicorn[standard]==0.34.3
+pydantic==2.13.5
+pydantic-core==2.46.5
+lightgbm==4.7.0
+polars==1.44.2
+numpy==2.5.3
+joblib==1.5.0
+python-multipart==0.0.20
