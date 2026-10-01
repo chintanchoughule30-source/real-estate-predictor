@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EstateIQ — Brag Sheet</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: #ffffff;
+    color: #1f2328;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+  }
+
+  /* Hero */
+  .hero {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 36px 32px 30px;
+    margin-bottom: 36px;
+    color: #f8fafc;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a78bfa;
+    background: rgba(167,139,250,0.12);
+    border: 1px solid rgba(167,139,250,0.25);
+    border-radius: 20px;
+    padding: 3px 12px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: #f1f5f9;
+  }
+  .hero h1 span { color: #a78bfa; }
+  .hero-sub {
+    font-size: 15px;
+    color: #94a3b8;
+    max-width: 520px;
+    margin-bottom: 24px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: #a78bfa;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Section */
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #57606a;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* What it does */
+  .what-card {
+    background: #f7f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: #1f2328;
+    line-height: 1.7;
+  }
+  .what-card strong { color: #3b82d4; }
+
+  /* Stack grid */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .stack-item {
+    background: #f7f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .stack-layer {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #57606a;
+    margin-bottom: 4px;
+  }
+  .stack-tech {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2328;
+  }
+  .stack-detail {
+    font-size: 12px;
+    color: #57606a;
+    margin-top: 2px;
+  }
+
+  /* Challenges */
+  .challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .challenge-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #f7f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .challenge-badge {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .challenge-badge.solved {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+  .challenge-text strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2328;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .challenge-text span {
+    font-size: 12px;
+    color: #57606a;
+  }
+
+  /* ML metrics */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .metric-box {
+    background: #f7f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .metric-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: #3b82d4;
+    margin-bottom: 4px;
+  }
+  .metric-lbl {
+    font-size: 11px;
+    color: #57606a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Deploy */
+  .deploy-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .deploy-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .deploy-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1f2328;
+    margin-bottom: 4px;
+  }
+  .deploy-what {
+    font-size: 12px;
+    color: #57606a;
+    margin-bottom: 8px;
+  }
+  .deploy-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 2px 10px;
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  /* Flow */
+  .flow {
+    display: flex;
+    align-items: center;
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 18px 24px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .flow-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #e2e8f0;
+  }
+  .flow-arrow {
+    font-size: 14px;
+    color: #a78bfa;
+    padding: 0 6px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 12px;
+    color: #57606a;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">Portfolio Project</div>
+    <h1>Estate<span>IQ</span></h1>
+    <p class="hero-sub">A full-stack Machine Learning web app that predicts residential property prices in Bengaluru, India — built end-to-end from raw dataset to live deployment.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-val">13,320</span>
+        <span class="stat-label">Training records</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">0.745</span>
+        <span class="stat-label">Test R&#178; score</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">199</span>
+        <span class="stat-label">Model features</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val">196</span>
+        <span class="stat-label">Locations encoded</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- What it does -->
+  <div class="section">
+    <div class="section-title">What it does</div>
+    <div class="what-card">
+      A user enters four property details &mdash; <strong>location</strong>, <strong>area (sq. ft.)</strong>, <strong>BHK</strong>, and <strong>bathrooms</strong> &mdash; and the app instantly returns an <strong>estimated price in Lakhs (INR)</strong> along with a &plusmn;10% confidence band. The model was trained on real Bengaluru house listing data from Kaggle, cleaned, and deployed as a REST API.
+    </div>
+  </div>
+
+  <!-- Architecture flow -->
+  <div class="section">
+    <div class="section-title">Architecture</div>
+    <div class="flow">
+      <div class="flow-box">React UI</div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">POST /predict</div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">FastAPI Backend</div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">LightGBM Model</div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-box">Price + Range</div>
+    </div>
+  </div>
+
+  <!-- Tech stack -->
+  <div class="section">
+    <div class="section-title">Tech Stack</div>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="stack-layer">Frontend</div>
+        <div class="stack-tech">React 18 + Vite</div>
+        <div class="stack-detail">Tailwind CSS, Framer Motion</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-layer">Backend</div>
+        <div class="stack-tech">FastAPI + Uvicorn</div>
+        <div class="stack-detail">Pydantic v2 validation</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-layer">ML Model</div>
+        <div class="stack-tech">LightGBM</div>
+        <div class="stack-detail">Native API, 5-fold CV</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-layer">Data Processing</div>
+        <div class="stack-tech">Polars + NumPy</div>
+        <div class="stack-detail">Pure-wheel, no compilation</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-layer">Persistence</div>
+        <div class="stack-tech">Joblib</div>
+        <div class="stack-detail">model.pkl + columns.json</div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-layer">Deployment</div>
+        <div class="stack-tech">Vercel + Render</div>
+        <div class="stack-detail">Frontend + Backend, free tier</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ML Metrics -->
+  <div class="section">
+    <div class="section-title">Model Performance</div>
+    <div class="metrics-row">
+      <div class="metric-box">
+        <div class="metric-val">LightGBM</div>
+        <div class="metric-lbl">Algorithm</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">0.745</div>
+        <div class="metric-lbl">Test R&#178;</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">60.6L</div>
+        <div class="metric-lbl">Test RMSE</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">500</div>
+        <div class="metric-lbl">Boosting rounds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenges solved -->
+  <div class="section">
+    <div class="section-title">Challenges Solved</div>
+    <div class="challenge-list">
+      <div class="challenge-item">
+        <div class="challenge-badge solved">&#10003;</div>
+        <div class="challenge-text">
+          <strong>Python 3.14 compatibility</strong>
+          <span>scikit-learn, pandas, xgboost had no cp314 wheels on Windows. Replaced entirely with LightGBM native API + Polars + NumPy &mdash; all ship pre-built cp314 wheels, zero C compilation needed.</span>
+        </div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-badge solved">&#10003;</div>
+        <div class="challenge-text">
+          <strong>pydantic-core Rust/PyO3 block</strong>
+          <span>PyO3 capped at Python 3.13. Pinned pydantic-core==2.46.5 which ships a cp314-win_amd64 pre-built wheel.</span>
+        </div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-badge solved">&#10003;</div>
+        <div class="challenge-text">
+          <strong>Dataset filename mismatch</strong>
+          <span>train.py looked for dataset.csv but the file was Bengaluru_House_Data.csv. Fixed the DATASET_PATH constant.</span>
+        </div>
+      </div>
+      <div class="challenge-item">
+        <div class="challenge-badge solved">&#10003;</div>
+        <div class="challenge-text">
+          <strong>Windows console Unicode errors</strong>
+          <span>Arrow and checkmark characters failed on cp1252 Windows console. Replaced with ASCII equivalents.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deployment -->
+  <div class="section">
+    <div class="section-title">Deployment</div>
+    <div class="deploy-row">
+      <div class="deploy-card">
+        <div class="deploy-name">Frontend &mdash; Vercel</div>
+        <div class="deploy-what">React + Vite app served via global CDN. Auto-deploys on every git push to main.</div>
+        <span class="deploy-pill">Free tier</span>
+      </div>
+      <div class="deploy-card">
+        <div class="deploy-name">Backend &mdash; Render</div>
+        <div class="deploy-what">FastAPI + LightGBM. Trains the model on build, serves predictions via REST API.</div>
+        <span class="deploy-pill">Free tier</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>
